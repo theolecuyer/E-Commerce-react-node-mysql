@@ -1,0 +1,48 @@
+services:
+    frontend:
+        build:
+            context: client
+        ports:
+            - "3000:3000"
+        depends_on:
+            - backend
+
+    backend:
+        build:
+            context: server
+        ports:
+            - "3001:3001"
+        environment:
+            USE_LOCALHOST: "false"
+            PORT: 3001
+            DB_SERVER_HOST: mysql
+            DB_SERVER_USER: appuser
+            DB_SERVER_PASSWORD: secret
+            DB_SERVER_DATABASE: ecommerce
+            JWT_SECRET_KEY_ACCESS_TOKEN: ACCESS
+            JWT_SECRET_KEY_REFRESH_TOKEN: REFRESH
+        depends_on:
+            mysql:
+                condition: service_healthy
+
+    mysql:
+        image: mysql:8.0
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_DATABASE: ecommerce
+            MYSQL_USER: appuser
+            MYSQL_PASSWORD: secret
+            MYSQL_ROOT_PASSWORD: rootsecret
+        ports:
+            - "3306:3306"
+        volumes:
+            - db-data:/var/lib/mysql
+            - ./database:/docker-entrypoint-initdb.d
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootsecret"]
+            interval: 5s
+            timeout: 5s
+            retries: 10
+
+volumes:
+    db-data: {}
