@@ -1,6 +1,6 @@
 import "./App.scss";
 import { useState } from "react";
-import LoginRegisterForm from "./components/LoginRegisterContainer/LoginRegisterContainer"
+import LoginRegisterForm from "./components/LoginRegisterContainer/LoginRegisterContainer";
 import AdminCustomerContainer from "./components/AdminCustomerContainer/AdminCustomerContainer";
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
     setAdmin(isAdmin);
     setCustomerId(customerId);
   };
+
   const handleLogout = () => {
     sessionStorage.removeItem("isUserAuthenticated");
     sessionStorage.removeItem("isAdmin");
@@ -29,30 +30,45 @@ function App() {
     setAdmin(false);
     setCustomerId(undefined);
   };
+
   return (
-    <div >
+    <div className="app">
       {!isUserAuthenticated ? (
         <LoginRegisterForm setUserAuthenticatedStatus={setUserAuthenticatedStatus} />
       ) : (
         <>
-            <div className="login-button-container"><button
-              onClick={handleLogout}
-              // style={{
-              //   backgroundColor: 'black',
-              //   color: 'white',
-              //   border: 'none',
-              //   padding: '10px 20px',
-              //   borderRadius: '5px',
-              //   cursor: 'pointer'
-              // }}
-              className="login-button"
-            >
-              Logout
-            </button></div>
+          <header className="app-header">
+            <div className="header-logo">
+              <span className="logo-icon">🛒</span>
+              <span className="logo-text">
+                E<span className="logo-accent">-</span>Cart
+              </span>
+            </div>
+
+            <div className="header-search">
+              <input
+                type="text"
+                placeholder="Search products, brands and more..."
+                readOnly
+              />
+              <button className="search-btn">🔍</button>
+            </div>
+
+            <div className="header-right">
+              <div className="header-account">
+                <span className="account-greeting">
+                  Hello, {isAdmin ? "Admin" : "Customer"}
+                </span>
+                <span className="account-label">Account &amp; Lists</span>
+              </div>
+              <button className="header-logout-btn" onClick={handleLogout}>
+                Sign Out
+              </button>
+            </div>
+          </header>
 
           <AdminCustomerContainer isAdmin={isAdmin} customerId={customerId} />
         </>
-
       )}
     </div>
   );

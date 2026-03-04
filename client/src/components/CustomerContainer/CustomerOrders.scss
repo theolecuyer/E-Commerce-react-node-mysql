@@ -1,31 +1,101 @@
-.customer-orders-container {
-    margin-top: 20px;
+.orders-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  padding: 28px;
 }
 
-.customer-orders-container div {
-    margin-bottom: 10px;
+.orders-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-.customer-orders-container table {
-    width: 100%;
-    border-collapse: collapse;
+/* ── Empty State ── */
+.orders-empty {
+  text-align: center;
+  padding: 48px 0;
+
+  .orders-empty-icon {
+    font-size: 52px;
+    margin-bottom: 16px;
+    opacity: 0.25;
+  }
+
+  p {
+    color: #555;
+    font-size: 15px;
+    margin: 0 0 8px;
+  }
+
+  .orders-empty-hint {
+    color: #999;
+    font-size: 13px;
+  }
 }
 
-.customer-orders-container th,
-.customer-orders-container td {
-    border: 1px solid #ddd;
-    padding: 8px;
+/* ── Orders Table ── */
+.orders-table-wrap {
+  overflow-x: auto;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+
+  th {
+    background: #f9f9f9;
+    padding: 12px 16px;
     text-align: left;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #e0e0e0;
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 13px 16px;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+  }
+
+  tbody tr:hover {
+    background: #f9f9f9;
+  }
+
+  .order-id {
+    font-family: monospace;
+    color: #007bff;
+    font-size: 13px;
+    font-weight: 600;
+  }
 }
 
-.customer-orders-container th {
-    background-color: #f2f2f2;
-}
+/* ── Status Badge ── */
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
 
-.customer-orders-container tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
+  &.delivered {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
 
-.customer-orders-container tbody tr:hover {
-    background-color: #ddd;
+  &.processing {
+    background: #e3f2fd;
+    color: #1565c0;
+  }
+
+  &.cancelled {
+    background: #ffebee;
+    color: #c62828;
+  }
 }

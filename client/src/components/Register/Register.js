@@ -61,73 +61,98 @@ function Register(props) {
     return true;
   };
 
-  const updateAdmin = (adminValue) => {
-    setAdmin(adminValue);
-  };
-
   return (
     <div className="register-container">
-      <h1>Register</h1>
-      <div>
-        <label>E-Mail</label>
+      <div className="auth-field">
+        <label htmlFor="reg-email">Email address</label>
         <input
+          id="reg-email"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-        ></input>
+          placeholder="you@example.com"
+          autoComplete="email"
+        />
       </div>
-      <div>
-        <label>First Name</label>
-        <input
-          type="text"
-          value={fname}
-          onChange={(e) => setFname(e.target.value)}
-        ></input>
+
+      <div className="auth-field name-row">
+        <div>
+          <label htmlFor="reg-fname">First name</label>
+          <input
+            id="reg-fname"
+            type="text"
+            value={fname}
+            onChange={(e) => setFname(e.target.value)}
+            placeholder="Jane"
+            autoComplete="given-name"
+          />
+        </div>
+        <div>
+          <label htmlFor="reg-lname">Last name</label>
+          <input
+            id="reg-lname"
+            type="text"
+            value={lname}
+            onChange={(e) => setLname(e.target.value)}
+            placeholder="Doe"
+            autoComplete="family-name"
+          />
+        </div>
       </div>
-      <div>
-        <label>Last Name</label>
+
+      <div className="auth-field">
+        <label htmlFor="reg-password">Password</label>
         <input
-          type="text"
-          value={lname}
-          onChange={(e) => setLname(e.target.value)}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
+          id="reg-password"
           type="password"
           value={pass}
           onChange={(e) => setPass(e.target.value)}
-        ></input>
-      </div>
-      {error && <div className="error-message">{error}</div>}
-      <div className="radio-group">
-        <input
-          type="radio"
-          id="customer"
-          name="role"
-          value="0"
-          checked={isAdmin === "0"}
-          onChange={() => updateAdmin("0")}
+          placeholder="At least 6 characters"
+          autoComplete="new-password"
         />
-        <label htmlFor="customer">Customer</label>
-        <br />
-        <input
-          type="radio"
-          id="admin"
-          name="role"
-          value="1"
-          checked={isAdmin === "1"}
-          onChange={() => updateAdmin("1")}
-        />
-        <label htmlFor="admin">Admin</label>
       </div>
-      <div>
-        <button onClick={handleUserRegistration}>Register</button>
+
+      {error && <div className="auth-error">{error}</div>}
+
+      <div className="role-group">
+        <span className="role-label">Account type</span>
+        <div className="role-options">
+          <label className={`role-option ${isAdmin === "0" ? "selected" : ""}`}>
+            <input
+              type="radio"
+              name="role"
+              value="0"
+              checked={isAdmin === "0"}
+              onChange={() => setAdmin("0")}
+            />
+            <span>Customer</span>
+          </label>
+          <label className={`role-option ${isAdmin === "1" ? "selected" : ""}`}>
+            <input
+              type="radio"
+              name="role"
+              value="1"
+              checked={isAdmin === "1"}
+              onChange={() => setAdmin("1")}
+            />
+            <span>Admin</span>
+          </label>
+        </div>
       </div>
-      <div className="login-link" onClick={() => props.navigateToLoginPage()}>
-        Already Logged In User
-      </div>
+
+      <button className="auth-btn" onClick={handleUserRegistration}>
+        Create Account
+      </button>
+
+      <p className="auth-switch-text">
+        Already have an account?{" "}
+        <span
+          className="auth-switch-link"
+          onClick={() => props.navigateToLoginPage()}
+        >
+          Sign in
+        </span>
+      </p>
     </div>
   );
 }

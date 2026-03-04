@@ -1,66 +1,81 @@
-// Login.scss
-
+/* Shared auth field styles used by both Login and Register */
 .login-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+  .auth-field {
+    margin-bottom: 18px;
 
     label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
     }
 
     input[type="text"],
     input[type="password"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        box-sizing: border-box;
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #d0d5dd;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #111;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+
+      &::placeholder {
+        color: #aaa;
+      }
+
+      &:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
+      }
     }
+  }
 
-    button {
-        width: 100%;
-        padding: 10px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+  .auth-error {
+    background: #fff3f3;
+    border: 1px solid #f5c6c6;
+    color: #c0392b;
+    border-radius: 6px;
+    padding: 9px 14px;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
 
-        &:hover {
-            background-color: #0056b3;
-        }
+  .auth-btn {
+    width: 100%;
+    padding: 11px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    margin-bottom: 16px;
+
+    &:hover {
+      background-color: #0056b3;
     }
+  }
 
-    .register-link {
-        text-align: center;
-        margin-top: 10px;
-        color: #007bff;
-        cursor: pointer;
-        transition: color 0.3s ease;
+  .auth-switch-text {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin: 0;
 
-        &:hover {
-            color: #0056b3;
-        }
+    .auth-switch-link {
+      color: #007bff;
+      cursor: pointer;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+        color: #0056b3;
+      }
     }
-
-    .error-message {    
-        color: red;
-        margin-top: 5px;
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
+  }
 }

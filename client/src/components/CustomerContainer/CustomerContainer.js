@@ -6,29 +6,28 @@ import "./CustomerContainer.scss";
 const CustomerContainer = (props) => {
   const [isProductsActive, setIsProductsActive] = useState(true);
 
-  const changeList = () => {
-    setIsProductsActive(!isProductsActive);
-  };
-
   return (
-    <div className="customer-container">
-      <div>
-        {isProductsActive ? (
-          <>
-            <button onClick={changeList}>Get My Past Orders</button>
-            <div className="list-container">
-              <CustomerProductList />
-            </div>
-          </>
-        ) : (
-          <>
-            <button onClick={changeList}>Product List</button>
-            <div className="list-container">
-              <CustomerOrders />
-            </div>
-          </>
-        )}
-      </div>
+    <div className="customer-wrapper">
+      <nav className="customer-nav">
+        <div className="customer-nav-inner">
+          <button
+            className={`nav-tab ${isProductsActive ? "active" : ""}`}
+            onClick={() => setIsProductsActive(true)}
+          >
+            🛍️ Shop
+          </button>
+          <button
+            className={`nav-tab ${!isProductsActive ? "active" : ""}`}
+            onClick={() => setIsProductsActive(false)}
+          >
+            📦 My Orders
+          </button>
+        </div>
+      </nav>
+
+      <main className="customer-main">
+        {isProductsActive ? <CustomerProductList /> : <CustomerOrders />}
+      </main>
     </div>
   );
 };

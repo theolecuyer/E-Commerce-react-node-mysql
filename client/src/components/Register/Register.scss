@@ -1,77 +1,145 @@
-// Register.scss
-
 .register-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+  .auth-field {
+    margin-bottom: 18px;
 
     label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
     }
 
     input[type="text"],
     input[type="password"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        box-sizing: border-box;
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #d0d5dd;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #111;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+
+      &::placeholder {
+        color: #aaa;
+      }
+
+      &:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
+      }
     }
 
-    input[type="radio"] {
-        display: inline-block;
-        margin-right: 5px;
-        vertical-align: middle;
+    /* Side-by-side first/last name */
+    &.name-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 6px;
+      }
+    }
+  }
+
+  .auth-error {
+    background: #fff3f3;
+    border: 1px solid #f5c6c6;
+    color: #c0392b;
+    border-radius: 6px;
+    padding: 9px 14px;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  /* ── Account type selector ── */
+  .role-group {
+    margin-bottom: 20px;
+
+    .role-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
     }
 
-    button {
-        width: 100%;
-        padding: 10px;
-        background-color: #28a745;
-        color: #fff;
-        border: none;
-        border-radius: 3px;
-        margin-top: 10px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-
-        &:hover {
-            background-color: #218838;
-        }
+    .role-options {
+      display: flex;
+      gap: 12px;
     }
 
-    .login-link {
-        text-align: center;
-        margin-top: 10px;
+    .role-option {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border: 1px solid #d0d5dd;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #555;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+
+      input[type="radio"] {
+        display: none;
+      }
+
+      &.selected {
+        border-color: #007bff;
+        background: #e8f0fe;
         color: #007bff;
-        cursor: pointer;
-        transition: color 0.3s ease;
+        font-weight: 600;
+      }
 
-        &:hover {
-            color: #0056b3;
-        }
+      &:hover:not(.selected) {
+        border-color: #aaa;
+        background: #f7f8fa;
+      }
     }
+  }
 
-    .radio-group {
-        display: flex
-    }
+  .auth-btn {
+    width: 100%;
+    padding: 11px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    margin-bottom: 16px;
 
-    .error-message {
-        color: red;
-        margin-top: 5px;
-        font-size: 14px;
-        margin-bottom: 10px;
+    &:hover {
+      background-color: #45a049;
     }
+  }
+
+  .auth-switch-text {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+
+    .auth-switch-link {
+      color: #007bff;
+      cursor: pointer;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+        color: #0056b3;
+      }
+    }
+  }
 }

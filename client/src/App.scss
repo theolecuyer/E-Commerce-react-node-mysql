@@ -1,21 +1,136 @@
-// Add styling for login button
-.login-button {
-
-
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+* {
+  box-sizing: border-box;
 }
 
-.login-button-container {
+.app {
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+/* ── Main Header ── */
+.app-header {
+  background-color: #131921;
   color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  padding: 8px 24px;
   display: flex;
-  flex-direction: row-reverse;
+  align-items: center;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  height: 60px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: default;
+  flex-shrink: 0;
+  transition: border-color 0.15s;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .logo-icon {
+    font-size: 24px;
+  }
+
+  .logo-text {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: white;
+
+    .logo-accent {
+      color: #febd69;
+    }
+  }
+}
+
+.header-search {
+  flex: 1;
+  display: flex;
+  max-width: 680px;
+  height: 40px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
+  input {
+    flex: 1;
+    padding: 0 14px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+    background: white;
+    color: #111;
+
+    &::placeholder {
+      color: #aaa;
+    }
+  }
+
+  .search-btn {
+    background: #007bff;
+    border: none;
+    padding: 0 18px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    transition: background 0.15s;
+
+    &:hover {
+      background: #0056b3;
+    }
+  }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.header-account {
+  display: flex;
+  flex-direction: column;
+
+  .account-greeting {
+    color: #ccc;
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  .account-label {
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+}
+
+.header-logout-btn {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 6px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+  }
 }
