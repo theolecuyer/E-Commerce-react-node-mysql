@@ -1,0 +1,17 @@
+name: RC Release
+
+on:
+    release:
+        types: [published]
+
+jobs:
+    dispatch:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Trigger infra repo RC workflow
+              run: |
+                  curl -X POST \
+                    -H "Authorization: token ${{ secrets.INFRA_DISPATCH_TOKEN }}" \
+                    -H "Accept: application/vnd.github.v3+json" \
+                    https://api.github.com/repos/theolecuyer/ecommerce-infra/dispatches \
+                    -d '{"event_type":"rc-release","client_payload":{"tag":"${{ github.event.release.tag_name }}"}}'
