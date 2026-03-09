@@ -1,8 +1,9 @@
 name: RC Release
 
 on:
-    release:
-        types: [published]
+    push:
+        tags:
+            - 'v*.*.*-rc.*'
 
 jobs:
     dispatch:
@@ -14,4 +15,4 @@ jobs:
                     -H "Authorization: token ${{ secrets.INFRA_DISPATCH_TOKEN }}" \
                     -H "Accept: application/vnd.github.v3+json" \
                     https://api.github.com/repos/theolecuyer/ecommerce-infra/dispatches \
-                    -d '{"event_type":"rc-release","client_payload":{"tag":"${{ github.event.release.tag_name }}"}}'
+                    -d '{"event_type":"rc-release","client_payload":{"tag":"${{ github.ref_name }}"}}'
